@@ -1,0 +1,38 @@
+label {
+  position: relative;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+span {
+  background: white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0.5rem;
+  background: white;
+  transition: all ease-out 150ms;
+  padding: 0rem 0.25rem;
+  cursor: text;
+}
+
+input:focus + span {
+  top: 0;
+  transform: translateY(-100%);
+  font-size: 0.75rem;
+  color: #1969E1;
+}
+
+input:hover {
+  border-color: #221648;
+}
+
+input:focus {
+  border-color: #1969E1;
+}
+
+input {
+  height: 1.5rem;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid grey;
+  border-radius: 4px;
+}
