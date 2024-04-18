@@ -1,0 +1,32 @@
+:host {
+  --chip-color: #e0e0e0;
+  --chip-background: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    --chip-color: #fff;
+    --chip-background: #e0e0e0;
+  }
+}
+
+body[data-theme='dark'] {
+  :host {
+    --chip-color: #fff;
+    --chip-background: #e0e0e0;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :host {
+    --chip-color: #e0e0e0;
+    --chip-background: #fff;
+  }
+}
+
+body[data-theme='light'] {
+  :host {
+    --chip-color: #e0e0e0;
+    --chip-background: #fff;
+  }
+}

@@ -6,8 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface EmrChip {
+        "label": string;
+    }
     interface MaterialInput {
-        "class": string;
         "label": string;
         "placeholder": string;
     }
@@ -26,7 +28,28 @@ export namespace Components {
         "middle": string;
     }
 }
+export interface EmrChipCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLEmrChipElement;
+}
 declare global {
+    interface HTMLEmrChipElementEventMap {
+        "remove": any;
+    }
+    interface HTMLEmrChipElement extends Components.EmrChip, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLEmrChipElementEventMap>(type: K, listener: (this: HTMLEmrChipElement, ev: EmrChipCustomEvent<HTMLEmrChipElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLEmrChipElementEventMap>(type: K, listener: (this: HTMLEmrChipElement, ev: EmrChipCustomEvent<HTMLEmrChipElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLEmrChipElement: {
+        prototype: HTMLEmrChipElement;
+        new (): HTMLEmrChipElement;
+    };
     interface HTMLMaterialInputElement extends Components.MaterialInput, HTMLStencilElement {
     }
     var HTMLMaterialInputElement: {
@@ -40,13 +63,17 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "emr-chip": HTMLEmrChipElement;
         "material-input": HTMLMaterialInputElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface EmrChip {
+        "label"?: string;
+        "onRemove"?: (event: EmrChipCustomEvent<any>) => void;
+    }
     interface MaterialInput {
-        "class"?: string;
         "label"?: string;
         "placeholder"?: string;
     }
@@ -65,6 +92,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "emr-chip": EmrChip;
         "material-input": MaterialInput;
         "my-component": MyComponent;
     }
@@ -73,6 +101,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "emr-chip": LocalJSX.EmrChip & JSXBase.HTMLAttributes<HTMLEmrChipElement>;
             "material-input": LocalJSX.MaterialInput & JSXBase.HTMLAttributes<HTMLMaterialInputElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
